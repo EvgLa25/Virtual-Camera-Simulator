@@ -1,28 +1,45 @@
 # VCamSim — Virtual ONVIF Camera Simulator
 
+[![Tests](https://github.com/EvgLa25/Virtual-Camera-Simulator/actions/workflows/ci.yml/badge.svg)](https://github.com/EvgLa25/Virtual-Camera-Simulator/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue)
+![Platform: Windows](https://img.shields.io/badge/Platform-Windows-0078D6)
+
 **Turn your own video files into virtual IP cameras.** Choose a video from your
 computer and VCamSim loops it as an H.264 or H.265 RTSP stream that a video
 management system can connect to like a camera. Test ONVIF integration and
 simulate network, authentication, video and event failures without a rack of
 physical devices.
 
+[Get the source](https://github.com/EvgLa25/Virtual-Camera-Simulator/releases/latest) · [Quick start](#quick-start) · [Report a bug or compatibility result](https://github.com/EvgLa25/Virtual-Camera-Simulator/issues/new/choose) · [Contribute](CONTRIBUTING.md)
+
 ![VCamSim dashboard](docs/images/dashboard.png)
+
+## Who is it for?
+
+- **VMS developers:** exercise camera discovery, ONVIF requests and RTSP playback against repeatable video sources.
+- **QA engineers and integrators:** create multiple camera feeds and check how a client handles offline cameras, authentication failures and damaged streams.
+- **Learning and lab work:** explore IP-camera protocols without needing a collection of physical cameras.
+
+VCamSim simulates network IP cameras for ONVIF/RTSP clients. It does not register a webcam device for meeting apps. Compatibility depends on the client and the ONVIF operations it uses; community test reports are welcome.
 
 ## Quick start
 
-Use Python 3.11 or newer. Windows is the primary desktop platform.
+You need **Python 3.11+**, **FFmpeg and ffprobe**, and a video file of your own. Windows is the primary desktop platform. This release contains source code; it is not a Windows installer.
+
+Install FFmpeg separately with `libx264` and `libx265` support. Put FFmpeg and ffprobe on PATH, beside the application, or in its `ffmpeg/bin` directory. See [FFmpeg’s download page](https://ffmpeg.org/download.html) and check the license of the build you select. No FFmpeg binaries or sample videos are included.
+
+Clone the repository, or download and extract **Source code (zip)** from the [latest release](https://github.com/EvgLa25/Virtual-Camera-Simulator/releases/latest). Open PowerShell in the folder containing `run_gui.py`.
 
 ```powershell
+git clone https://github.com/EvgLa25/Virtual-Camera-Simulator.git
+cd Virtual-Camera-Simulator
 python -m venv .venv
-.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-python run_gui.py
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe run_gui.py
 ```
 
-Install **FFmpeg and ffprobe separately**, with `libx264` and `libx265` support.
-Put them on PATH, beside the application, or in its `ffmpeg/bin` directory.
-See [FFmpeg's download page](https://ffmpeg.org/download.html) and check the
-license of the build you select. No FFmpeg binaries are included here.
+If you downloaded the ZIP, skip the first two commands. Calling the virtual environment’s Python directly avoids needing to activate a PowerShell script.
 
 ### Use your own video file
 
@@ -131,6 +148,12 @@ and verify the test ports are free.
 
 See [architecture](docs/architecture.md), [building and publishing](docs/release.md),
 [security](SECURITY.md), and [third-party notices](THIRD_PARTY_NOTICES.md).
+
+## Help the project grow
+
+Try it with your VMS or RTSP client and [share a compatibility report](https://github.com/EvgLa25/Virtual-Camera-Simulator/issues/new/choose), including the client version, codec and transport. Successful tests are useful too. Reproducible bug reports, documentation improvements and focused pull requests are welcome; see [Contributing](CONTRIBUTING.md).
+
+If VCamSim helps your work, star the repository so you can find it again and share its link with other developers or testing teams who could use it.
 
 ## License
 
