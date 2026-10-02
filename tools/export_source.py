@@ -16,6 +16,8 @@ TOP_LEVEL = (
 PATTERNS = (
     "vcamsim/*.py", "tools/*.py", "tests/*.py", "docs/*.md",
     "docs/images/dashboard.png", "docs/images/empty-state.png",
+    "docs/images/social-preview.jpg",
+    ".github/ISSUE_TEMPLATE/*.yml", ".github/PULL_REQUEST_TEMPLATE.md",
     "licenses/*.txt", ".github/workflows/*.yml", "installer/*.iss",
 )
 
