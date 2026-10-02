@@ -1,0 +1,44 @@
+name: Bug report
+description: Report a reproducible problem with VCamSim.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: "Search existing issues first. Remove credentials, tokens, private addresses and real footage from attachments. For security concerns, read SECURITY.md."
+  - type: input
+    id: version
+    attributes:
+      label: VCamSim version or commit
+      placeholder: "v1.3.0 or a commit hash"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: "Windows version, Python version, FFmpeg version, and VMS or RTSP client name/version."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: "Include camera count, H264/H265, TCP/UDP, port/alias mode, and source video container/codecs where relevant."
+      placeholder: "1. Generate cameras...
+2. Connect using...
+3. Observe..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: "Include exact errors and a small sanitized log excerpt or screenshot if useful."
+    validations:
+      required: true

@@ -1,0 +1,50 @@
+name: VMS or RTSP client compatibility
+description: Share a successful test or a compatibility issue.
+title: "[Compatibility]: "
+body:
+  - type: markdown
+    attributes:
+      value: "Successful tests help other users too. Results describe your exact setup, not ONVIF certification. Remove credentials, private addresses and real footage."
+  - type: input
+    id: client
+    attributes:
+      label: VMS or RTSP client and version
+    validations:
+      required: true
+  - type: input
+    id: simulator
+    attributes:
+      label: VCamSim version or commit
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Overall result
+      options:
+        - Works for the features tested
+        - Partially works
+        - Unable to connect or stream
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: Test setup
+      description: "OS, Python/FFmpeg versions, camera count, H264/H265, TCP/UDP and port/alias mode."
+    validations:
+      required: true
+  - type: textarea
+    id: tested
+    attributes:
+      label: What did you test?
+      description: "Describe discovery, manual connection, main/sub stream playback, snapshots, events or fault recovery. State what you did not test."
+    validations:
+      required: true
+  - type: textarea
+    id: findings
+    attributes:
+      label: Results and reproduction steps
+      description: "Include any workarounds and sanitized errors. Link an existing bug report instead of duplicating it."
+    validations:
+      required: true

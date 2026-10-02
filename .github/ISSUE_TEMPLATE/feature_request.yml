@@ -1,0 +1,27 @@
+name: Feature request
+description: Suggest an improvement and the problem it would solve.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: "Describe the testing or development workflow that is difficult today."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: "Explain what you would like the user to be able to do."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives or workarounds
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: "Relevant protocols, clients, examples or mockups. Use only public or synthetic data."
