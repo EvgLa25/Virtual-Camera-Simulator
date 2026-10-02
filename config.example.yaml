@@ -1,0 +1,56 @@
+media_dir: media_cache
+discovery_enabled: true
+rtsp_session_timeout_sec: 120   # drop RTSP sessions idle this long (0 = never)
+
+addressing:
+  mode: port            # port | alias
+  bind_host: 0.0.0.0
+  advertise_ip: ''      # blank = auto-detect this machine's LAN IP
+  onvif_base_port: 8000
+  rtsp_base_port: 554     # camera N gets 554+N; standard port = most compatible
+  # alias mode (requires Administrator)
+  alias_interface: Ethernet
+  alias_base_ip: 10.10.1.100
+  alias_netmask: 255.255.255.0
+  alias_onvif_port: 80
+  alias_rtsp_port: 554
+
+cameras:
+  - name: VCam 01
+    video: C:\videos\lobby.mp4
+    enabled: true
+    username: admin
+    password: admin
+    manufacturer: VCamSim
+    model: VCS-2000
+    firmware: 1.0.0
+    motion_interval_sec: 30       # 0 = no automatic motion events
+    motion_duration_sec: 3
+    # some VMS clients will not authenticate RTSP themselves and need the
+    # credentials handed back inside the stream URI
+    stream_uri_credentials: false
+    pin_onvif_port: 0             # 0 = allocate automatically
+    pin_rtsp_port: 0
+    profiles:
+      - name: MainStream
+        token: profile_1
+        width: 1920
+        height: 1080
+        fps: 25
+        bitrate: 4096
+        codec: H264
+        stream_path: /Streaming/Channels/101
+      - name: SubStream
+        token: profile_2
+        width: 704
+        height: 576
+        fps: 15
+        bitrate: 512
+        codec: H264
+        stream_path: /Streaming/Channels/102
+    faults:
+      offline: false
+      reject_auth: false
+      clock_drift_sec: 0
+      soap_latency_ms: 0
+      drop_rtp_pct: 0.0

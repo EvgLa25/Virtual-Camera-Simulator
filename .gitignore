@@ -1,0 +1,44 @@
+# User configuration and access secrets
+config.yaml
+config.yaml.*
+control.token
+*.token
+.env
+.env.*
+!.env.example
+
+# Generated media and local inputs
+media_cache/
+videos/
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.h264
+*.h265
+
+# Builds, private notes and diagnostic output
+build/
+dist/
+installer/Output/
+Vault/
+*.log
+*.exe
+*.dll
+*.zip
+*.part
+*.tmp
+
+# Python, editors and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.vs/
+.vscode/
+.idea/
