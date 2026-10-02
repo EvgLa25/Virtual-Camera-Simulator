@@ -1,9 +1,10 @@
 # VCamSim — Virtual ONVIF Camera Simulator
 
-Create virtual IP cameras for testing video management systems without a rack
-of physical devices. Each camera loops a video through H.264 or H.265 RTSP
-streams, exposes ONVIF services, and can simulate network, authentication,
-video and event failures.
+**Turn your own video files into virtual IP cameras.** Choose a video from your
+computer and VCamSim loops it as an H.264 or H.265 RTSP stream that a video
+management system can connect to like a camera. Test ONVIF integration and
+simulate network, authentication, video and event failures without a rack of
+physical devices.
 
 ![VCamSim dashboard](docs/images/dashboard.png)
 
@@ -23,16 +24,33 @@ Put them on PATH, beside the application, or in its `ffmpeg/bin` directory.
 See [FFmpeg's download page](https://ffmpeg.org/download.html) and check the
 license of the build you select. No FFmpeg binaries are included here.
 
-In the GUI: **Generate cameras → choose a video and count → Start**.
-The first run imports up to 60 seconds of each source; later runs reuse the
-cache. Set the import duration to zero to use the entire video.
+### Use your own video file
+
+1. Click **Generate cameras** on the welcome screen, or **Generate** in the
+   toolbar.
+2. Next to **Video file**, click **Browse** and select a video on your computer.
+   The picker includes MP4, MKV, AVI, MOV and TS files; decoding depends on your
+   installed FFmpeg build and the codecs inside the file.
+3. Choose the camera **Count** and output **Codec** (H264 or H265).
+   **Import only first** defaults to 60 seconds; set it to **0 (whole file)**
+   to use the entire video.
+4. Click **Generate**, then **Start**. VCamSim imports the source once and loops
+   it continuously. Connect your VMS or RTSP client to a generated camera.
+
+One video can feed many cameras. For **different videos on different cameras**,
+use **Add** to create a camera with its own video, or **Edit** an existing camera
+and choose another **Video file**. **Bulk edit** can change the source video for
+multiple selected cameras. No sample video is bundled; supply your own file.
 
 Use **Save & apply** to persist edits and restart a running engine with the
-new configuration. Fault toggles apply immediately. Closing the GUI stops its
-local engine; a separately running Windows service continues serving cameras.
+new configuration. Later starts reuse the imported media cache. Fault toggles
+apply immediately. Closing the GUI stops its local engine; a separately running
+Windows service continues serving cameras.
 
 ## Features
 
+- **Bring your own video:** browse for a local file and loop it as a camera feed;
+  share one video across many cameras or choose a different source per camera.
 - ONVIF Device, Media, Media2, Events and Imaging operations; WS-Discovery.
 - RTSP over TCP or UDP; H.264/H.265 RTP; JPEG snapshots; PullPoint events.
 - Main and sub streams; shared cached media and a continuous camera timeline.
@@ -47,8 +65,11 @@ Snapshots are extracted at one frame per second.
 
 ## Command line
 
+Replace the example video path with the file you want to use. Quote paths that
+contain spaces. This example creates four cameras using the same video:
+
 ```powershell
-python -m vcamsim -c config.yaml gen --video C:\videos\sample.mp4 --count 4
+python -m vcamsim -c config.yaml gen --video "C:\videos\sample.mp4" --count 4
 python -m vcamsim -c config.yaml run
 python -m vcamsim -c config.yaml list
 ```
